@@ -3,7 +3,8 @@ Elyce Buell (enb46@cornell.edu or ebuell@vt.edu) or Roja Kaveh Garna (rojakaveh@
 
 Soils data:
 --------------------------------------------------------------------------------------
-Soils data was provided by the Vermont Association of Conservative Districts (USDA NRCS, 2019. USDA Announces Water Quality Study in Vermont’s Lake Champlain Basin | NRCS [WWW Document]. URL https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/newsroom/releases/?cid=NRCSEPRD1495437 (accessed 4.8.22)).
+Soils data was provided by the Vermont Association of Conservative Districts (USDA NRCS, 2019. USDA Announces Water Quality Study in Vermont’s Lake 
+Champlain Basin | NRCS [WWW Document]. URL https://www.nrcs.usda.gov/wps/portal/nrcs/detail/national/newsroom/releases/?cid=NRCSEPRD1495437 (accessed 4.8.22)).
 They have requested that soils data not be published publically with this code. Please reach out the the contacts listed above for more information. 
 The general format of the relevant .csv file is (by column):
 Latitude	
