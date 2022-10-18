@@ -3,7 +3,7 @@ Integrating multiple Digital Elevation Models into soil characteristic distribut
 
 This repository contains all the data, spatial files, and code used to execute the analysis in Integrating multiple Digital Elevation Models into 
 soil characteristic distribution. Contributing authors: Elyce Buell, Roja Kaveh Garna, Sabrina Mehzabin, Binyam Asfaw, Louise Koepele, Daniel R. Fuka, 
-Amy S. Collick, William Auchincloss, and Zachary M. Eastona
+Amy S. Collick, William Auchincloss, and Zachary M. Easton
 
 
 If you have any questions regarding this publication please contact Elyce Buell (<enb46@cornell.edu> or <ebuell@vt.edu>) or Roja Kaveh Garna (rojakaveh@vt.edu).
