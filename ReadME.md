@@ -69,43 +69,64 @@ soil characteristic distribution*. This study is conducted to propose a new meth
 Download and install per instuctions found here <https://hydrology.usu.edu/taudem/taudem5/>
 
 ## Running R code
-### Texture
-Calculates texture of samples using envalysis package
+
+### DelinandExtract.R
+Function that delinates full watershed using TauDEM: available at: https://github.com/dtarb/TauDEM. Both D8 and Dinf flow direction algorithms are options for delineation and extration (discussed in Tarboton DG. 1997; DOI: 10.1029/96WR03137). This is a function file that will delineate a watershed and extract spatial values of interest. The purpose of this is to be able to simplify our analysis by not having to deal with any pushing and pulling of large spatial rasters.
+
+Function inputs:
+-DEM: DEM shall be inputted as projected into UTM and clipped as needed
+-Outlet coordinates: a 2x1 matrix
+-Coordinates of interest: a 2xn matrix (for this paper these would be the soils locations that we are interested in)
+-An indication of either Dinf or D8 for the delineation (either "Dinf" or "D8")
+-Number of TICs desired
+				
+Function outputs
+-Output extracted data
+  Output will be a 6xn matrix (where n is the number of points of interest there are)
+  Output matrix columns: Lat  Long  Slp SCA TIV TIC
+
+Example: output = SSTTExtract(DEM,outletcoords,POI,"D8",10)
+Please note that code asks you the anticipated size of watershed to see if you agree with the delineation. If you do not agree, the outlet is moved to the maxima raster SCA for all the rasters surrounding the original raster. This process occurs recursively until the user agrees with the rough size of the watershed. Please note that you will also need to download a DEM of choice to run this function
+Please note the code below:
 	
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/Texture.R","Texture.R")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/HydrometerMeas.xlsx","HydrometerMeas.xlsx")
-	file.edit("Texture.R")
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/DelinandExtract.R","DelinandExtract.R")
+	file.edit("DelinandExtract.R")
 
+### ExtractSlpSCA.R
+Function does the processes described in DelinandExtract.R but does not run delineation. The purpose of this code is to extract slope and SCA for loactions of interest.
 
-### runDelin_taudem
-Delineates watershed and export tiff files for slope, catchment area, aspect, topographic index value, and topographic index class Outlet for the watershed studied (in lat long): 37.204526, -80.445175. Please note the code below
-	
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/runDelin_taudem.R","runDelin_taudem.R")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/1arcsec_arcproj_bilin.tif","1arcsec_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/1_3arcsec_arcproj_bilin.tif","1_3arcsec_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/2010LIDAR_arcproj_bilin.tif","2010LIDAR_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/2018LIDAR_arcproj_bilin.tif","2018LIDAR_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/MonitoringPoint.shp","MonitoringPoint.shp")
-	file.edit("runDelin_taudem.R")
+Function inputs
+-DEM: DEM shall be inputted as projected into UTM and clipped as needed
+-Coordinates of interest: a 2xn matrix (for this paper these would be the soils locations that we are interested in)
+-An indication of either Dinf or D8 for the delineation
 
-### ExtractSpatial
-Extracts spatial data (rasters resulting from runDelin_taudem) from all soil sampling locations. Must run runDelin_taudem.R and save rasters locally in order for extraction to work
+Function outputs
+-Output extracted data
+ Output will be a 4xn matrix (where n is the number of points of interest there are)
+ Output matrix columns: Lat  Long  Slp SCA
+				
+Example: output = SSExtract(DEM,POI,"D8")
+Please note that you will also need to download a DEM of choice to run this function.
+Please note the code below:
 
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/ExtractSpatial.R","ExtractSpatial.R")
-	file.edit("ExtractSpatial.R")
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/ExtractSlpSCA.R","ExtractSlpSCA.R")
+	file.edit("ExtractSlpSCA.R")
 
-### Fig2to5
-Figure generation for figures 2-5 and figures S2-S5. Must run runDelin_taudem.R and save rasters locally in order for figure generation to work
+### corrplotfiggenTI.R
+The purpose of this code is to run the SSTTextract and create correlation plots for to resulting data. Must run DelinandExtract.R before running this code.
 
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/Fig2to5.R","Fig2to5.R")
-	file.edit("Fig2to5.R")
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/DelinandExtract.R","DelinandExtract.R")
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/corrplotfiggenTI.R","corrplotfiggenTI.R")
+	file.edit("DelinandExtract.R")
+	file.edit("corrplotfiggenTI.R")
 
-### Fig6and7
-Figure generation for figures 6 and 7. Must run runDelin_taudem.R and save rasters locally in order for figure generation to work
+### corrplotfiggen.R		
+The purpose of this code is to run the SSextract and create correlation plots for to resulting data. This code also produces the multiple regression summary figure. Must run ExtractSlpSCA.R before running this code.
 
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/Fig6and7.R","Fig6and7.R")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/PhysicalProperties_datainpaper.xlsx","PhysicalProperties_datainpaper.xlsx")
-	file.edit("Fig6and7.R")
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/DelinandExtract.R","ExtractSlpSCA.R")
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/corrplotfiggenTI.R","corrplotfiggen.R")
+	file.edit("ExtractSlpSCA.R")
+	file.edit("corrplotfiggen.R")
 
 ### Fig8to10
 Figure generation for figures 8-10. Must run runDelin_taudem.R and save rasters locally in order for figure generation to work
