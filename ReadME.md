@@ -175,7 +175,7 @@ DEM raster for SRTM sourced from https://doi.org/10.1029/EO081i048p00583
 
 ### Remaining DEMs
 The remaining DEMs used in this project are too large to include in this publication (per GitHub requirements).
-LiDAR data can be found here: https://maps.vcgi.vermont.gov/LidarFinder/
+LiDAR data can be found here: https://maps.vcgi.vermont.gov/LidarFinder/;
 1m, and 1/3as can be found here: https://apps.nationalmap.gov/downloader/#/
 
 Please note that a great deal of raster merging and clipping was done for the LiDAR data to make the spatial data small enough for the computer (64 cores)
