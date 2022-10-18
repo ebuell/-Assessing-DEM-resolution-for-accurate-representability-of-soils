@@ -38,17 +38,32 @@ soil characteristic distribution*. This study is conducted to propose a new meth
 •   shapefiles
 •   RColorBrewer
 •   corrplot
-•   hydroGOF
-•   ggpubr
 •   rgeos
-•   envalysis
 •   elevatr
 •   devtools
 •   plot.matrix
 •   grid
+•   httr
+•   parallel
+•   EcoHydRology
+•   GSODR
+•   curl
+•   sp
+•   sf
+•   reticulate
+•   classInt
+•   ggridges
+•   ggplot2
+•   viridis
+•   hrbrthemes
+•   dplyr
+•   tidyr
+•   forcats
+•   gridExtra
 
-        if (!require("pacman")) install.packages("pacman")
-        pacman::p_load(raster,rgdal,shapefiles,RColorBrewer,corrplot,hydroGOF,ggpubr,rgeos,envalysis,elevatr,devtools,plot.matrix,grid)
+
+	if (!require("pacman")) install.packages("pacman")
+     pacman::p_load(raster,rgdal,shapefiles,RColorBrewer,corrplot,rgeos,elevatr,devtools,plot.matrix,grid,httr,parallel,EcoHydRology,GSODR,curl,sp,sf,reticulate,classInt,ggridges,ggplot2,viridis,hrbrthemes,dplyr,tidyr,forcats,gridExtra)
 	
 ### Additional R functionality required: TauDEM
 Download and install per instuctions found here <https://hydrology.usu.edu/taudem/taudem5/>
