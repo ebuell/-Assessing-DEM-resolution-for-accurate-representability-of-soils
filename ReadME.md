@@ -152,7 +152,7 @@ Data extracted from recursively coarsened DEMs generated from Coarsenres and is 
 ## Excel summary:
 
 ### Soils Data
-Soils data was provided by the Vermont Association of Conservative Districts (USDA NRCS, 2019). The have requested that soils data not be published 
+Soils data was provided by the Vermont Association of Conservative Districts (USDA NRCS, 2019). They have requested that soils data not be published 
 publically with this code. Please reach out the the contacts listed above for more information. 
 The general format of the relevant .csv file is (by column):
 Latitude	
