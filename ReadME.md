@@ -6,7 +6,7 @@ soil characteristic distribution. Contributing authors: Elyce Buell, Roja Kaveh 
 Amy S. Collick, William Auchincloss, and Zachary M. Eastona
 
 
-If you have any questions regarding this publication please contact Elyce Buell (<enb46@cornell.edu> or <ebuell@vt.edu>).
+If you have any questions regarding this publication please contact Elyce Buell (<enb46@cornell.edu> or <ebuell@vt.edu>) or Roja Kaveh Garna (rojakaveh@vt.edu).
 
 ## Links
 See the following links for more information on  `R` and `RStudio` download and installation:
@@ -69,6 +69,8 @@ soil characteristic distribution*. This study is conducted to propose a new meth
 Download and install per instuctions found here <https://hydrology.usu.edu/taudem/taudem5/>
 
 ## Running R code
+Please note that soils data was provided by the Vermont Association of Conservative Districts (USDA NRCS, 2019). The have requested that soils data not be published 
+publically with this code. Please reach out the the contacts listed above for more information. Because this information has been omitted, published codes cannot be run in entirity.
 
 ### DelinandExtract.R
 Function that delinates full watershed using TauDEM: available at: https://github.com/dtarb/TauDEM. Both D8 and Dinf flow direction algorithms are options for delineation and extration (discussed in Tarboton DG. 1997; DOI: 10.1029/96WR03137). This is a function file that will delineate a watershed and extract spatial values of interest. The purpose of this is to be able to simplify our analysis by not having to deal with any pushing and pulling of large spatial rasters.
@@ -113,7 +115,7 @@ Please note the code below:
 	file.edit("ExtractSlpSCA.R")
 
 ### corrplotfiggenTI.R
-The purpose of this code is to run the SSTTextract and create correlation plots for to resulting data. Must run DelinandExtract.R before running this code.
+The purpose of this code is to run the SSTTextract and create correlation plots for to resulting data. Must run DelinandExtract.R before running this code. 
 
 	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/DelinandExtract.R","DelinandExtract.R")
 	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/corrplotfiggenTI.R","corrplotfiggenTI.R")
@@ -128,174 +130,58 @@ The purpose of this code is to run the SSextract and create correlation plots fo
 	file.edit("ExtractSlpSCA.R")
 	file.edit("corrplotfiggen.R")
 
-### Fig8to10
-Figure generation for figures 8-10. Must run runDelin_taudem.R and save rasters locally in order for figure generation to work
+### soilsdistandcomparessurgo.R
+This code generates the figures the compare distributed soil maps (using the multiple regressions resulting from corrplotfiggen) to SSURGO distributed soils. This code also compares (via bootstrapping) the informed multiple regressions to using the finest resolution for soil distribution.
 
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/Fig8to10.R","Fig8to10.R")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/PhysicalProperties_datainpaper.xlsx","PhysicalProperties_datainpaper.xlsx")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/DEMderivedSpatialAtt.xlsx","DEMderivedSpatialAtt.xlsx")
-	file.edit("Fig8to10.R")
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/soildistandcomparessurgo.R","soildistandcomparessurgo.R")
+	file.edit("soildistandcomparessurgo.R")
 
-### Figsupp
-Supplemental figure generation
+### Coarsenres.R
+This code recursively coarsens the LiDAR DEM and extracts slopes and SCAs from each coarsened DEM. Currently this is setup for LiDAR only, though both 1m and 1/3as have also been coarsened for the analysis found in the corresponding paper. The workspace is saved after each coarsening because this process was time intense and ran unsupervised for several days. Workspace saving was done in order to avoid any data losses due to crashed code.
 	
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/Figsupp.R","Figsupp.R")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/1arcsec_arcproj_bilin.tif","1arcsec_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/1_3arcsec_arcproj_bilin.tif","1_3arcsec_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/2010LIDAR_arcproj_bilin.tif","2010LIDAR_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/2018LIDAR_arcproj_bilin.tif","2018LIDAR_arcproj_bilin.tif")
-	download.file("https://raw.githubusercontent.com/ebuell/Evaluating-Digital-Elevation-Models-and-Topographic-Indices-for-Geomorphic-Landscape-Representaton/main/MonitoringPoint.shp","MonitoringPoint.shp")
-	file.edit("Figsupp.R")
-
-
-## Excels (excel and sheet names) summary:
-
-### PhysicalProperties_datainpaper.xlsx
-Summarizes physical properties of soil cores taken at 36 locations in southwest virginia
-
-#### PhysicalResults	
-Final texture, organic matter, and horizon depth information found here. All categories included in this excel are used in the paper analysis. 
-Details on direct measurements and QAQC can be found in KSatMeas, OrgMatter, and SoilTexture.
-
-#### WSView 		      
-Locations of soil cores (numbers correspond to WSView ID)
-
-### PhysicalProperties_alldata.xlsx
-
-#### PhysicalResults
-Summarizes physical properties of soil cores taken at 36 locations in southwest virginia. Final texture, organic matter, and horizon depth information found here. Not all categories included in this excel are used in the paper analysis. Details on direct measurements and QAQC can be found in KSatMeas, OrgMatter, and SoilTexture.
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/blob/main/Coarsenres.R","Coarsenres.R")
+	file.edit("Coarsenres.R")
 	
-#### WSView
-Locations of soil cores (numbers correspond to WSView ID)
-
-### OrganicMatter.xlsx
-
-#### OM
-Summarizes OM for all horizons. Loss on ignition tests are conducted on each horizon for all soil cores. Soil samples ranged from 50g to 250g. Samples were dried for 2 days in a Fisher Scientific Isotherm oven set to 105 degC and are subsequently weighed. These samples are incinerated and before and after weights are compared to yield percent organic matter by weight. The samples are incinerated at 425 degC. The length of incineration was dictated by the incinerator used. For the Barnstead International Model 1730 12 sample incinerator, samples are incinerated for a minimum of 6 hours. For the Thermolyne Furnace Type 10500 1 sample incinerator, samples are incinerated for a minimum of 4 hours. A 4 hour incineration in the Barnstead International Model 1730 was shown to have magnitude errors of up to 1% organic matter and thus 2 additional hours were added on to the incineration time.
-
-#### WSView 
-Locations of soil cores (numbers correspond to WSView ID)
+### bestres.R
+Data extracted from recursively coarsened DEMs generated from Coarsenres and is saved locally. This code generates the figures seen in the paper.
 	
-#### OrgMatter
-Direct weight measurements and calculations for organic matter
+	download.file("https://github.com/ebuell/-Assessing-DEM-resolution-for-accurate-representability-of-soils/edit/main/bestres.R","bestres.R")
+	file.edit("bestres.R")
 
-#### QAQC_NewSoil
-New soil subsamples from the same core/horizon are analyzed for organic matter
 
-#### QAQC_NewSoilAnalysis
-Analysis to see if the errors seen in these QAQC runs is tied to horizon thickness or the amount of time that the soil has been left unfrozen in between runs
-	
-#### QAQC_SampleRerun
-Already incinerated samples were rerun in order to check that the current methodology was suffcient accurate within reason.
+## Excel summary:
 
-### SoilTexture.xlxs
-
-#### TextureFinal
-Final texture (sand and clay) values decided by R code. For more information on texture descision making for this calculation is in the R code
-
-#### WSView
-Locations of soil cores (numbers correspond to WSView ID)
-
-#### SoilGravel
-Measured gravel content using a 2mm sieve
-
-#### TextureSummary
-Relevant measurement values for calculating soil texture
-
-#### QAQCTextureSummary
-Summarizes QAQC and orgininal runs; this includes two types of QAQC: reruns (i.e. shake the soil column again with same soil) and new soil from soil column
-
-### HydrometerMeas.xlsx
-Direct hydrometer measurements following the method described in ASTM D4222. In order to directly calculate the hydrometer corrects (see ASTM D4222), several corrections need to be measured. This ultimately did not pan out and texture was calculated using envalysis package.
-	
-#### TextureSummary
-Relevant measurement values for calculating soil texture
-
-#### QAQCTextureSummary
-Relevant measurement values for calculating QAQC soil texture
-
-#### WSView
-Locations of soil cores (numbers correspond to WSView ID)	
-
-#### SoilTextureA
-All measurements for hydrometer trials for A horizon
-
-#### SoilTextureBa
-All measurements for hydrometer trials for Ba horizon
-	
-#### SoilTextureBt
-All measurements for hydrometer trials for Bt horizon
-	
-#### TempCorrMeas
-Measured hydrometer correction values in distilled water at a variety of temperatures. A very poor relationship between temperature and hydrometer correction is found implying the poor reliability of the thermometers being used in the hydrometer method.
-	
-#### CorrectionSummary
-Direct measurement corrections.
-
-### KSatMeas.xlsx
-
-#### KSAT
-Ksat values and lats and longs
-
-#### WSView
-Locations of soil cores (numbers correspond to WSView ID)
-
-#### SatHydCondTestx
-Sheets with direct field readings for the Eijkelkamp Soil & Water double-ring infiltrometer test following (Bouwer, 1986;  DOI: 10.2136/sssabookser5.1.2ed.c32)
-
-### DEMderivedSpatialAtt.xlsx
-All numbers in this document are derived using TauDEM: available at: <https://github.com/dtarb/TauDEM>. Both D8 and Dinf flow direction algorithms (discussed in Tarboton DG. 1997; DOI: 10.1029/96WR03137) are used as well as the four DEMs (LIDAR 2018, LIDAR 2010, 1/3as, and 1as).
-	
-#### SCA
-Speicfic catchment area (expressed in m)
-
-#### Slope
-Slope (expressed in length/length)
-
-#### TIValue
-TIV = ln(SCA/slope)
-	
-#### TIClass
-TIC bins the TIVs into 10 equally sized categories ranging from 1-10 (where the highest TIVs correspond to TIC = 10 etc.)
-
-#### WSView
-Locations of soil cores (numbers correspond to WSView ID)
-
-#### Aspect
-Aspects range from 1-8. Refer to TauDEM documentation to understand these values.
-
-### MeasSpatProp.xlsx
-#### SpatialProp
-Measured spatial properties (slope and aspect); a phone app clinometer (<https://play.google.com/store/apps/details?id=com.plaincode.clinometer&hl=en_US&gl=US>) and phone compass are used to measure these values. The measurement was taken with the assistance of a 4-wheel vehicle; the vehicle was oriented perpendicularly to the slope and the slope that the utility vehicle is experiancing is recorded. The distance between the two front wheels of the utility vehicle is 1.2m. The aspect is measured by pointing the compass perpendicularly and downslope of how the utility vehicle is oriented for the slope measurement.
-
-#### WSView 
-Locations of soil cores (numbers correspond to WSView ID)
+### Soils Data
+Soils data was provided by the Vermont Association of Conservative Districts (USDA NRCS, 2019). The have requested that soils data not be published 
+publically with this code. Please reach out the the contacts listed above for more information. 
+The general format of the relevant .csv file is (by column):
+Latitude	
+Longitude	
+Sand content (% by mass)	
+Clay content (% by mass)	
+Predicted awc (cm/cm)	
+Organic matter content (% by mass)
 
 ## Spatial data files
 
-### Construction_exclusion
-A box that surround highway 460 throughout the entire watershed so analysis can exclude this area
+### 1as_projandtrim.tif
+DEM raster for 1as sourced from USGS https://apps.nationalmap.gov/downloader/#/
 
-### Monitoring_point
-Outlet location
+### GDEM_projandtrim.tif
+DEM raster for GDEM sourced from https://doi.org/10.5067/ASTER/ASTGTM.003
 
-### pathsunderoverpass
-A path that is created to mimic storm drainage culverts that run below highway 460. Only used for LIDAR analysis; USGS DEM did not have any highway interfereance.
+### STRM_projandtrim.tif
+DEM raster for SRTM sourced from https://doi.org/10.1029/EO081i048p00583
 
-### SoilSampleLocations
-Soil sampling locations
+### Remaining DEMs
+The remaining DEMs used in this project are too large to include in this publication (per GitHub requirements).
+LiDAR data can be found here: https://maps.vcgi.vermont.gov/LidarFinder/
+1m, and 1/3as can be found here: https://apps.nationalmap.gov/downloader/#/
 
-### 1as_arcproj_bilin
-1 as DEM bilinear projection executed in ArcMap
-
-### 1_3as_arcproj_bilin
-1/3 as DEM bilinear projection executed in ArcMap
-
-### 2010LIDAR_arcproj_bilin
-2010LIDAR DEM bilinear projection executed in ArcMap
-
-### 2018LIDAR_arcproj_bilin
-2018LIDAR DEM bilinear projection executed in ArcMap; dataset too big to upload to github, please find via google drive here: <https://drive.google.com/file/d/1fc_7hbiMM8hfNFi38inOW2mjg_jeq-K6/view?usp=sharing>
+Please note that a great deal of raster merging and clipping was done for the LiDAR data to make the spatial data small enough for the computer (64 cores)
+to handle. This code is not published but can be shared upon request. Because of the size of many of the rasters, many of the resulting rasters are saved
+locally once raster manipulation is completed. As a result, the code is not stand alone because of the intensity of the computation needed to make the 
+code stand alone.
 
 # License
 Please see the LICENSE.md file for license information.
