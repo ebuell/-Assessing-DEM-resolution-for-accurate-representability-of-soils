@@ -1,7 +1,10 @@
-Evaluating Digital Elevation Models and Topographic Indices for Geomorphic Landscape Representaton [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6791484.svg)](https://doi.org/10.5281/zenodo.6791484)
+Integrating multiple Digital Elevation Models into soil characteristic distribution [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6857407.svg)](https://doi.org/10.5281/zenodo.6857407)
 =================
 
-This repository contains all the data, spatial files, and code used to execute the analysis in Evaluating Digital Elevation Models and Topographic Indices for Geomorphic Landscape Representation. Contributing authors: Elyce Buell, Amy Collick, Dan Fuka, Roja Kaveh Garna, and Zachary Easton.
+This repository contains all the data, spatial files, and code used to execute the analysis in Integrating multiple Digital Elevation Models into 
+soil characteristic distribution. Contributing authors: Elyce Buell, Roja Kaveh Garna, Sabrina Mehzabin, Binyam Asfaw, Louise Koepele, Daniel R. Fuka, 
+Amy S. Collick, William Auchincloss, and Zachary M. Eastona
+
 
 If you have any questions regarding this publication please contact Elyce Buell (<enb46@cornell.edu> or <ebuell@vt.edu>).
 
@@ -18,11 +21,14 @@ There is also a cloud-based `RStudio` sever at the following location:
 
 See the following likes for information regarding `DEM` data
 
+- GDEM DEM download <https://lpdaac.usgs.gov/products/astgtmv003/>
+- SRTM DEM download <https://ui.adsabs.harvard.edu/abs/2000EOSTr..81..583F%2F/abstract>
 - USGS DEM download <https://apps.nationalmap.gov/downloader/#/>
-- For information regarding LiDAR data please contact Elyce Buell (enb46@cornell.edu or ebuell@vt.edu) or Johnathan Resop (resop@vt.edu) 
+- Aerial LiDAR DEM download <https://maps.vcgi.vermont.gov/LidarFinder/>
 
 ## Description
-This repository contains R codes, excel files and DEM files for a project named *Multi-Scale Evaluation Digital Elevation Models (DEMs) and Topographic Indices (TI) for Geomorphic Landscape Representation*. This study is conducted to propose a new method of distributing soils using multiple DEMs as inputs. Thirty-six soil samples are analyzed for clay content, organic matter, and horizon thickness for A and BA horizons in southwest Virginia. Four DEMs (USGS ⅓ and 1as; 2010 and 2018 aerial LiDAR) are analyzed for spatial differences between derived properties (slope, Specific Catchment Area (SCA), and TI). Using multivariate regression, these soil properties are predicted, and a framework for soil map distribution is proposed.
+This repository contains R codes, excel files and DEM files for a project named *Integrating multiple Digital Elevation Models into 
+soil characteristic distribution*. This study is conducted to propose a new method of distributing soils using multiple DEMs as inputs. Fifty-nine soil samples are collected by the Vermont Association of Conservative Districts and analyzes for a broad range of soil characteristics including sand & clay content, organic matter, and predicted water capacity in western Vermont. Six DEMs (GDEM, SRTM, USGS 1m, ⅓ and 1as, and aerial LiDAR) are analyzed for spatial differences between derived properties (slope, Specific Catchment Area (SCA), and TI). Using multivariate regression, these soil properties are predicted, and a framework for soil map distribution is proposed.
 
  ## Quick start
 
